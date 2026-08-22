@@ -1,9 +1,18 @@
 [gd_resource type="Resource" script_class="ConditionResource" format=3 uid="uid://c7hdrgntiidf5"]
 
 [ext_resource type="Script" uid="uid://blnwod83f420b" path="res://scripts/content/condition_resource.gd" id="1_2addo"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="1_48m4k"]
 [ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="1_p3wge"]
 [ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="2_48m4k"]
+[ext_resource type="PackedScene" uid="uid://dvf7684b7r8bx" path="res://scenes/animations/poison_default.tscn" id="2_d870y"]
+[ext_resource type="Script" uid="uid://bmdopfml6o2xh" path="res://scripts/avfx/avfx_resource/avfx_animation.gd" id="3_wbmjk"]
 [ext_resource type="Script" uid="uid://byab874rev56u" path="res://scripts/content/stat_modifier.gd" id="4_d1igp"]
+
+[sub_resource type="Resource" id="Resource_uyy85"]
+script = ExtResource("3_wbmjk")
+animation_scene = ExtResource("2_d870y")
+target_self = true
+metadata/_custom_type_script = "uid://bmdopfml6o2xh"
 
 [sub_resource type="Resource" id="Resource_tipki"]
 script = ExtResource("2_48m4k")
@@ -18,6 +27,7 @@ metadata/_custom_type_script = "uid://fibswyx5ajt5"
 script = ExtResource("1_2addo")
 name = "Poison"
 on_begin_turn_effects = Array[ExtResource("1_p3wge")]([SubResource("Resource_tipki")])
+on_begin_turn_avfx = Array[ExtResource("1_48m4k")]([SubResource("Resource_uyy85")])
 duration = 15
 short_name = "PSN"
 metadata/_custom_type_script = "uid://blnwod83f420b"
