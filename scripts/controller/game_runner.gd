@@ -53,7 +53,7 @@ func setup_model():
 	var monster2 = MonsterController.create_monster(species_strong)
 	var monster3 = MonsterController.create_monster(species_agile)
 	
-	game_state.player = TrainerController.create_trainer([monster3, monster2], true)
+	game_state.player = TrainerController.create_trainer([monster3, monster1], true)
 	game_state.opponent = TrainerController.create_trainer([monster2], false)
 	
 	current_phase = PHASE.AWAIT_INPUT
