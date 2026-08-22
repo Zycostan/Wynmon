@@ -6,7 +6,7 @@ extends TargetedEffect
 @export var damage_log_string: String = "{doer_name} hits {target_name} for {amt} damage"
 @export var critical_hit_dmg_coefficient = 1.5
 
-func _do(doer: Monster, source: Object, game_state: GameState, is_critical: bool):
+func _do(doer: Monster, source: Object, game_state: GameState, is_critical: bool, logs: Array[String]):
 	var target = doer if target_self else MonsterController.get_monster_opponent(doer)
 	var type = source.get_type() if source.has_method("get_type") else MonsterType.Type.NORMAL
 	
@@ -21,9 +21,11 @@ func _do(doer: Monster, source: Object, game_state: GameState, is_critical: bool
 	
 	if effectiveness == MonsterType.Effectiveness.STRONG:
 		Events.request_log.emit("Extremely effective!")
+		logs.append("Its extremely effective!")
 	elif effectiveness == MonsterType.Effectiveness.WEAK:
 		Events.request_log.emit("That didn't do much")
+		logs.append("That didn't do much")
 	
 	Events.request_log.emit(damage_log_string.format({"doer_name": doer.name, "target_name": target.name, "amt": amt}))
-	
+	logs.append(damage_log_string.format({"doer_name": doer.name, "target_name": target.name, "amt": amt}))
 	

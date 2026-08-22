@@ -42,8 +42,11 @@ func use_monster_move(monster: Monster, move: Move):
 	if move.usages <= 0 or monster.hp == 0:
 		return
 	
+	var logs: Array[String] = []
+	
 	var use_string = move.use_message.format({"user_name": monster.name, "move_name": move.name})
 	Events.request_log.emit(use_string)
+	logs.append(use_string)
 	
 	var opponent = get_monster_opponent(monster)
 	if opponent.hp == 0:
@@ -52,6 +55,7 @@ func use_monster_move(monster: Monster, move: Move):
 	
 	if monster.move_blocked:
 		Events.request_log.emit("They are paralyzed!")
+		logs.append("They are paralyzed!")
 		monster.move_blocked = false
 		return
 	
@@ -61,16 +65,21 @@ func use_monster_move(monster: Monster, move: Move):
 	
 	if !hit:
 		Events.request_log.emit("It missed")
+		logs.append("It missed!")
 	
 	var crit = rng.randf() < Calculations.get_crit_chance(monster)
 	if crit:
 		Events.request_log.emit("Critical Hit!")
+		logs.append("Critical Hit!")
 	
-	AVFXManager.queue_avfx_effect_group(move.resource.use_avfx, monster)
+	var message_avfx = AVFXMessages.new(logs as Array[String])
+	var avfx_group = move.resource.use_avfx.duplicate()
+	avfx_group.append(message_avfx)
+	AVFXManager.queue_avfx_effect_group(avfx_group, monster)
 	
 	for effect in move.resource.use_effects:
 		if effect._should_do(hit, crit):
-			effect._do(monster, move, game_state, crit)
+			effect._do(monster, move, game_state, crit, logs)
 		
 
 func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
@@ -117,9 +126,10 @@ func on_turn_begun(monster: Monster):
 	if monster.hp == 0:
 		return
 	for condition in monster.conditions:
+		var logs: Array[String] = []
 		AVFXManager.queue_avfx_effect_group(condition.resource.on_begin_turn_avfx, monster)
 		for effect in condition.resource.on_begin_turn_effects:
-			effect._do(monster, condition, game_state, false)
+			effect._do(monster, condition, game_state, false, logs)
 		condition.duration_remaining -= 1
 		if condition.duration_remaining <= 0:
 			end_condition(monster, condition)

@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://bwqrj7njjbn07" path="res://ui/main.tres" id="2_trceg"]
 [ext_resource type="Script" uid="uid://b7eoh6vvt5ick" path="res://scripts/ui/battle_renderer.gd" id="3_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dcj3mcthwqxte" path="res://scenes/mon_renderer_module.tscn" id="4_jkv2x"]
+[ext_resource type="Script" uid="uid://eb2nybvddtwl" path="res://scripts/ui/typeout_label.gd" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://crpahbrk5mgcm" path="res://scenes/controls_menu.tscn" id="5_choun"]
+[ext_resource type="Script" uid="uid://cwciklq80pdf" path="res://scripts/ui/message_panel.gd" id="5_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://b5pwbmjdjsdbc" path="res://scenes/log.tscn" id="7_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bvnmhvojccgov" path="res://scenes/you.tscn" id="8_eb6dy"]
 [ext_resource type="FontFile" uid="uid://xj2o3brbo27g" path="res://assets/fonts/basis33.ttf" id="9_gqmmt"]
@@ -42,7 +44,25 @@ layout_mode = 2
 your_pov = true
 
 [node name="controls_menu" parent="battle_renderer/left" unique_id=251551685 instance=ExtResource("5_choun")]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+
+[node name="message_panel" type="Panel" parent="battle_renderer/left" unique_id=566595197 node_paths=PackedStringArray("label")]
+layout_mode = 2
+script = ExtResource("5_ya4ey")
+label = NodePath("TypeoutLabel")
+
+[node name="TypeoutLabel" type="Label" parent="battle_renderer/left/message_panel" unique_id=1196388807]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The quick brown fox jumped over the lazy dog"
+autowrap_mode = 2
+script = ExtResource("5_85g3d")
+metadata/_custom_type_script = "uid://eb2nybvddtwl"
 
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
 texture_filter = 1
