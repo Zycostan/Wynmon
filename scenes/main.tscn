@@ -18,7 +18,7 @@ position = Vector2(28, -53)
 offset = Vector2(196.46, 180)
 zoom = Vector2(2.57, 2.57)
 
-[node name="battle_renderer" type="Control" parent="." unique_id=1002199298 node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump")]
+[node name="battle_renderer" type="Control" parent="." unique_id=1002199298 node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump", "controls", "message_panel")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -30,6 +30,8 @@ enemy_mon_module = NodePath("left/mon_renderer_module")
 player_mon_module = NodePath("left/mon_renderer_module2")
 enemy_mon_state_dump = NodePath("tabs/them")
 player_mon_state_dump = NodePath("tabs/you")
+controls = NodePath("left/controls_menu")
+message_panel = NodePath("left/message_panel")
 
 [node name="left" type="VBoxContainer" parent="battle_renderer" unique_id=2081656364]
 layout_mode = 0
@@ -57,6 +59,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -17.5
+offset_right = 52.0
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "The quick brown fox jumped over the lazy dog"
@@ -65,6 +70,7 @@ script = ExtResource("5_85g3d")
 metadata/_custom_type_script = "uid://eb2nybvddtwl"
 
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 192.0

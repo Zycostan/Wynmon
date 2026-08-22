@@ -45,7 +45,6 @@ func use_monster_move(monster: Monster, move: Move):
 	var logs: Array[String] = []
 	
 	var use_string = move.use_message.format({"user_name": monster.name, "move_name": move.name})
-	Events.request_log.emit(use_string)
 	logs.append(use_string)
 	
 	var opponent = get_monster_opponent(monster)
@@ -54,7 +53,6 @@ func use_monster_move(monster: Monster, move: Move):
 		return
 	
 	if monster.move_blocked:
-		Events.request_log.emit("They are paralyzed!")
 		logs.append("They are paralyzed!")
 		monster.move_blocked = false
 		return
@@ -64,12 +62,10 @@ func use_monster_move(monster: Monster, move: Move):
 	var hit = rng.randf() < move.base_accuracy
 	
 	if !hit:
-		Events.request_log.emit("It missed")
 		logs.append("It missed!")
 	
 	var crit = rng.randf() < Calculations.get_crit_chance(monster)
 	if crit:
-		Events.request_log.emit("Critical Hit!")
 		logs.append("Critical Hit!")
 	
 	var message_avfx = AVFXMessages.new(logs as Array[String])

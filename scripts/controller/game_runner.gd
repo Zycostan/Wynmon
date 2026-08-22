@@ -97,8 +97,7 @@ func handle_request_menu_run():
 	if current_phase != PHASE.AWAIT_INPUT:
 		return
 	
-	Events.request_log.emit("You got away safely.")
-	
+	AVFXManager.queue_avfx_message("You got away safely.")	
 	await get_tree().create_timer(2.0).timeout
 	handle_request_quit()
 
@@ -111,7 +110,7 @@ func handle_request_restart():
 func choose_ai_move() -> Move:
 	var legal_move_indices = game_state.opponent_monster.get_legal_move_indices()
 	if legal_move_indices.size() <= 0:
-		Events.request_log.emit("No Moves, Defaulted.")
+		AVFXManager.queue_avfx_message("No Moves, Defaulted.")
 		return game_state.opponent_monster.fallback_move
 	else:
 		var move_index = legal_move_indices.pick_random()

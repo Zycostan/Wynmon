@@ -8,3 +8,5 @@ func _init(msgs: Array[String]) -> void:
 
 func _do(instance: AVFXInstance):
 	Events.on_avfx_messages.emit(instance, messages)
+	for message in messages:
+		Events.request_log.emit(message)

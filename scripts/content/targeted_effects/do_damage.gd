@@ -20,12 +20,9 @@ func _do(doer: Monster, source: Object, game_state: GameState, is_critical: bool
 	var effectiveness = MonsterType.get_type_effectiveness(type, target.type)
 	
 	if effectiveness == MonsterType.Effectiveness.STRONG:
-		Events.request_log.emit("Extremely effective!")
 		logs.append("Its extremely effective!")
 	elif effectiveness == MonsterType.Effectiveness.WEAK:
-		Events.request_log.emit("That didn't do much")
 		logs.append("That didn't do much")
 	
-	Events.request_log.emit(damage_log_string.format({"doer_name": doer.name, "target_name": target.name, "amt": amt}))
 	logs.append(damage_log_string.format({"doer_name": doer.name, "target_name": target.name, "amt": amt}))
 	

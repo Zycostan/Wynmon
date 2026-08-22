@@ -4,6 +4,8 @@ extends Control
 @export var player_mon_module: MonsterRendererModule
 @export var enemy_mon_state_dump: MonsterDataDump
 @export var player_mon_state_dump: MonsterDataDump
+@export var controls: Control
+@export var message_panel: MessagePanel
 
 func _ready() -> void:
 	enemy_mon_module.connect_events()
@@ -16,8 +18,20 @@ func _ready() -> void:
 	Events.on_avfx_flash_screen.connect(avfx_flash_screen)
 	Events.on_avfx_screenshake.connect(avfx_screenshake)
 	
+	Events.on_message_panel_start.connect(show_message_panel)
+	Events.on_message_panel_end.connect(hide_message_panel)
+	
 	Events.on_ui_ready.emit()
-		
+	
+	hide_message_panel()
+
+func show_message_panel():
+	message_panel.show()
+	controls.hide()
+
+func hide_message_panel():
+	message_panel.hide()
+	controls.show()
 
 func avfx_flash_screen(avfx_instance: AVFXInstance, v2s: Array[Vector2]):
 	var tween = get_tree().create_tween()

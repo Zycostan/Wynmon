@@ -23,6 +23,8 @@ signal on_monster_updated
 # Events sent internally
 signal request_log
 signal on_ui_ready
+signal on_message_panel_start
+signal on_message_panel_end
 
 # Events for sfx
 signal request_sfx

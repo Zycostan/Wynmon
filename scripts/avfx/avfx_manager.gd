@@ -29,6 +29,10 @@ func _process(delta: float) -> void:
 				avfx_instance.execute()
 			call_deferred("emit_block_start")
 
+func queue_avfx_message(message: String):
+	var messages = AVFXMessages.new([message] as Array[String])
+	queue_avfx_effect_group([messages], null)
+
 func queue_avfx_effect_group(resources: Array[AVFXResource], monster: Monster):
 	active = true
 	var group = Node.new()
