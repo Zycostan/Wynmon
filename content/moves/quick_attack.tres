@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://c7nj0orn7tjn1"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_yo48k"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_kaq3c"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_lfifl"]
+[ext_resource type="AudioStream" uid="uid://bk0jl18mdxh0j" path="res://assets/sound/Game_SFX_by_OwlishMedia/FF_punch.wav" id="3_1tqmc"]
+[ext_resource type="Script" uid="uid://bxj6ebonrgrdm" path="res://scripts/avfx/avfx_resource/avfx_play_sfx.gd" id="3_ig7ph"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_kaq3c"]
+[ext_resource type="Script" uid="uid://dsbcjpnbbuquq" path="res://scripts/content/vector2float.gd" id="4_1tqmc"]
+[ext_resource type="Script" uid="uid://vrcgx1ydc731" path="res://scripts/avfx/avfx_resource/avfx_move_monster.gd" id="5_30t8a"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_ig7ph")
+clip = ExtResource("3_1tqmc")
+metadata/_custom_type_script = "uid://bxj6ebonrgrdm"
+
+[sub_resource type="Resource" id="Resource_choun"]
+script = ExtResource("4_1tqmc")
+v2 = Vector2(-25, 0)
+f = 0.005
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_ya4ey"]
+script = ExtResource("4_1tqmc")
+v2 = Vector2(25, 0)
+f = 0.15
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_85g3d"]
+script = ExtResource("5_30t8a")
+offset_by_duration = Array[ExtResource("4_1tqmc")]([SubResource("Resource_choun"), SubResource("Resource_ya4ey")])
+target_self = true
+metadata/_custom_type_script = "uid://vrcgx1ydc731"
+
+[sub_resource type="Resource" id="Resource_gk37x"]
+script = ExtResource("3_kaq3c")
+base_damage = 15
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_yo48k")
+name = "Quick Attack"
+max_usages = 10
+use_effects = Array[ExtResource("2_kaq3c")]([SubResource("Resource_gk37x")])
+base_accuracy = 1.0
+move_priority = 1
+use_avfx = Array[ExtResource("2_lfifl")]([SubResource("Resource_tipki"), SubResource("Resource_85g3d")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"

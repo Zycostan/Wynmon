@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://4q3rj63fpeki"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_5iheo"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_d5ptr"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="3_8o6j6"]
+[ext_resource type="Script" uid="uid://dsbcjpnbbuquq" path="res://scripts/content/vector2float.gd" id="3_sykmd"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="4_d5ptr"]
+[ext_resource type="Script" uid="uid://vrcgx1ydc731" path="res://scripts/avfx/avfx_resource/avfx_move_monster.gd" id="4_ic6xw"]
+[ext_resource type="AudioStream" uid="uid://ecdteobrmxl6" path="res://assets/sound/Game_SFX_by_OwlishMedia/tinyexplode.wav" id="5_h07ae"]
+[ext_resource type="Script" uid="uid://bxj6ebonrgrdm" path="res://scripts/avfx/avfx_resource/avfx_play_sfx.gd" id="6_dyoiw"]
+[ext_resource type="Script" uid="uid://dirbk1atst0lp" path="res://scripts/avfx/avfx_resource/on_avfx_screenshake.gd" id="7_adji8"]
+
+[sub_resource type="Resource" id="Resource_85g3d"]
+script = ExtResource("3_sykmd")
+v2 = Vector2(-30, 0)
+f = 0.05
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_choun"]
+script = ExtResource("3_sykmd")
+v2 = Vector2(25, 0)
+f = 0.15
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_h07ae"]
+script = ExtResource("4_ic6xw")
+offset_by_duration = Array[ExtResource("3_sykmd")]([SubResource("Resource_85g3d"), SubResource("Resource_choun")])
+target_self = true
+metadata/_custom_type_script = "uid://vrcgx1ydc731"
+
+[sub_resource type="Resource" id="Resource_sykmd"]
+script = ExtResource("6_dyoiw")
+clip = ExtResource("5_h07ae")
+metadata/_custom_type_script = "uid://bxj6ebonrgrdm"
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("7_adji8")
+screen_offsets_and_timings = Array[Vector3]([Vector3(5, 0, 0.05), Vector3(0, 6, 0.05), Vector3(10, 0, 0.05)])
+metadata/_custom_type_script = "uid://dirbk1atst0lp"
+
+[sub_resource type="Resource" id="Resource_2m3sf"]
+script = ExtResource("4_d5ptr")
+base_damage = 100
+ignore_stats = true
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_5iheo")
+name = "Earthquake"
+max_usages = 5
+use_effects = Array[ExtResource("3_8o6j6")]([SubResource("Resource_2m3sf")])
+type = 1
+base_accuracy = 1.0
+move_priority = 1
+use_avfx = Array[ExtResource("2_d5ptr")]([SubResource("Resource_h07ae"), SubResource("Resource_sykmd"), SubResource("Resource_tipki")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"

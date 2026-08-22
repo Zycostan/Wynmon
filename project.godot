@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="Let's Build a Monster Battler"
+config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://scripts/infra/events.gd"
+GameRunner="*res://scripts/controller/game_runner.gd"
+MonsterController="*uid://dtqekxrxknvil"
+TrainerController="*uid://bnskibpjyw22s"
+SfxPlayer="*uid://b51qrfyeqjvw"
+AVFXManager="*uid://cr76s6te0mmkx"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+
+[display]
+
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Let-s Build a Monster Battler"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.607843, 0.737255, 0.0588235, 1)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://cq0o36gxg703l"]
+
+[ext_resource type="Texture2D" uid="uid://km1lu3tw8iu7" path="res://assets/art/wymon/sprites/adasaurs/defensive_adasaur.png" id="1_bgfoj"]
+[ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="2_q0jxj"]
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_148rc"]
+[ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="4_ax2j4"]
+
+[resource]
+script = ExtResource("2_q0jxj")
+image = ExtResource("1_bgfoj")
+name = "Defensive Adasaur"
+starter_moves = Array[ExtResource("3_148rc")]([ExtResource("4_ax2j4")])
+base_max_hp = 95
+base_attack = 60
+base_defense = 140
+base_speed = 55
+base_sp_attack = 45
+base_sp_defense = 115
+metadata/_custom_type_script = "uid://c21nigvw65tmi"

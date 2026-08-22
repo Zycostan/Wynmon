@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://ds8hdirhxccho"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_rxtwb"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_cgpki"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_cgpki"]
+
+[sub_resource type="Resource" id="Resource_obyih"]
+script = ExtResource("3_cgpki")
+base_damage = 5
+outcome_filter = 2
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[sub_resource type="Resource" id="Resource_owaku"]
+script = ExtResource("3_cgpki")
+base_damage = 2
+outcome_filter = 2
+target_self = true
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_rxtwb")
+name = "Struggle"
+max_usages = 999
+use_effects = Array[ExtResource("2_cgpki")]([SubResource("Resource_obyih"), SubResource("Resource_owaku")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"

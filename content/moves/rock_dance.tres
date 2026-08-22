@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://ctr04oo78ep7i"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_mot6q"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_1v5id"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_34jif"]
+[ext_resource type="Script" uid="uid://du5b1jfs5bm0i" path="res://scripts/content/targeted_effects/add_condition.gd" id="3_34jif"]
+[ext_resource type="Resource" uid="uid://14r5du5t7jg7" path="res://content/conditions/attack_boost.tres" id="3_k5lkx"]
+[ext_resource type="AudioStream" uid="uid://bgvcba21irxab" path="res://assets/sound/Game_SFX_by_OwlishMedia/transform2.wav" id="3_x8jgk"]
+[ext_resource type="Script" uid="uid://bxj6ebonrgrdm" path="res://scripts/avfx/avfx_resource/avfx_play_sfx.gd" id="4_h11br"]
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("4_h11br")
+clip = ExtResource("3_x8jgk")
+metadata/_custom_type_script = "uid://bxj6ebonrgrdm"
+
+[sub_resource type="Resource" id="Resource_k5lkx"]
+script = ExtResource("3_34jif")
+condition_resource = ExtResource("3_k5lkx")
+chance_to_apply = 1.0
+outcome_filter = 2
+target_self = true
+metadata/_custom_type_script = "uid://du5b1jfs5bm0i"
+
+[resource]
+script = ExtResource("1_mot6q")
+name = "Rock Dance"
+max_usages = 15
+use_effects = Array[ExtResource("2_34jif")]([SubResource("Resource_k5lkx")])
+base_accuracy = 1.0
+use_avfx = Array[ExtResource("2_1v5id")]([SubResource("Resource_tipki")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"

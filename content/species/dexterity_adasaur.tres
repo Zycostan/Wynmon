@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://udk8bbgx142l"]
+
+[ext_resource type="Texture2D" uid="uid://caulstg78dh8x" path="res://assets/art/wymon/sprites/adasaurs/dexterity_adasaur.png" id="1_of0y6"]
+[ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="2_82i1t"]
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_bmqj7"]
+[ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="4_spsvv"]
+
+[resource]
+script = ExtResource("2_82i1t")
+image = ExtResource("1_of0y6")
+name = "Dexterity Adasaur"
+starter_moves = Array[ExtResource("3_bmqj7")]([ExtResource("4_spsvv")])
+base_max_hp = 70
+base_attack = 90
+base_defense = 95
+base_speed = 110
+base_sp_attack = 60
+base_sp_defense = 75
+metadata/_custom_type_script = "uid://c21nigvw65tmi"

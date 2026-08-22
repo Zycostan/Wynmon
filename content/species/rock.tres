@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://dg5heny5l1jj1"]
+
+[ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="1_6nyu7"]
+[ext_resource type="Texture2D" uid="uid://crewqhbouc5vs" path="res://assets/art/monsters/rock.png" id="1_026xv"]
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_w4q8p"]
+[ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="5_4pcnk"]
+
+[resource]
+script = ExtResource("1_6nyu7")
+image = ExtResource("1_026xv")
+name = "Rock"
+starter_moves = Array[ExtResource("3_w4q8p")]([ExtResource("5_4pcnk")])
+type = 1
+base_max_hp = 150
+base_attack = 5
+base_defense = 100
+base_speed = 7
+base_sp_attack = 30
+base_sp_defense = 100
+metadata/_custom_type_script = "uid://c21nigvw65tmi"

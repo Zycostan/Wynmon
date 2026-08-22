@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://ml83ovalt42v"]
+
+[ext_resource type="Texture2D" uid="uid://bpok7lcigen42" path="res://assets/art/wymon/sprites/bosses/anathema.png" id="1_dylyh"]
+[ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="2_w3y8s"]
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_f15gb"]
+[ext_resource type="Resource" uid="uid://4q3rj63fpeki" path="res://content/moves/earthquake.tres" id="4_dylyh"]
+
+[resource]
+script = ExtResource("2_w3y8s")
+image = ExtResource("1_dylyh")
+name = "Anathema"
+starter_moves = Array[ExtResource("3_f15gb")]([ExtResource("4_dylyh")])
+type = 6
+base_max_hp = 155
+base_attack = 145
+base_defense = 195
+base_speed = 110
+base_sp_attack = 170
+base_sp_defense = 195
+metadata/_custom_type_script = "uid://c21nigvw65tmi"

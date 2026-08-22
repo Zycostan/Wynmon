@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://dxfol87jki4a6"]
+
+[ext_resource type="Texture2D" uid="uid://q5ukv4r8xxs1" path="res://assets/art/monsters/turtle.png" id="1_c8hl7"]
+[ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="2_celyt"]
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_udbc4"]
+[ext_resource type="Resource" uid="uid://c6r72sxdkrgsn" path="res://content/moves/poison_sting.tres" id="4_07hbh"]
+[ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="5_07hbh"]
+[ext_resource type="Resource" uid="uid://d00rkyfa3gjsm" path="res://content/moves/heal.tres" id="6_6oiqs"]
+[ext_resource type="Resource" uid="uid://ctr04oo78ep7i" path="res://content/moves/rock_dance.tres" id="7_07hbh"]
+
+[resource]
+script = ExtResource("2_celyt")
+image = ExtResource("1_c8hl7")
+name = "Turtle"
+starter_moves = Array[ExtResource("3_udbc4")]([ExtResource("4_07hbh"), ExtResource("5_07hbh"), ExtResource("6_6oiqs"), ExtResource("7_07hbh")])
+type = 3
+base_max_hp = 50
+base_attack = 25
+base_defense = 2
+base_speed = 180
+base_sp_attack = 23
+base_sp_defense = 15
+metadata/_custom_type_script = "uid://c21nigvw65tmi"

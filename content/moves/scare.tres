@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://b7pcdeey7wyhw"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_dxem4"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_k0c22"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_tpsmu"]
+[ext_resource type="Resource" uid="uid://cmlhsoi6jxibt" path="res://content/conditions/paralyze.tres" id="3_c3sbq"]
+[ext_resource type="Script" uid="uid://du5b1jfs5bm0i" path="res://scripts/content/targeted_effects/add_condition.gd" id="4_tpsmu"]
+
+[sub_resource type="Resource" id="Resource_si1nh"]
+script = ExtResource("4_tpsmu")
+condition_resource = ExtResource("3_c3sbq")
+chance_to_apply = 0.75
+metadata/_custom_type_script = "uid://du5b1jfs5bm0i"
+
+[resource]
+script = ExtResource("1_dxem4")
+name = "Scare"
+max_usages = 5
+use_effects = Array[ExtResource("2_k0c22")]([SubResource("Resource_si1nh")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"

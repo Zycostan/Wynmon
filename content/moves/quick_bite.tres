@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="MoveResource" format=3 uid="uid://bl4gcbg2nt1r2"]
+
+[ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="1_w2dh5"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_2s7c6"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="2_r8efk"]
+[ext_resource type="Script" uid="uid://fibswyx5ajt5" path="res://scripts/content/targeted_effects/do_damage.gd" id="3_4xntx"]
+[ext_resource type="AudioStream" uid="uid://b5mtv05fhpxb4" path="res://assets/sound/Game_SFX_by_OwlishMedia/slap.wav" id="3_06ngr"]
+[ext_resource type="Script" uid="uid://dsbcjpnbbuquq" path="res://scripts/content/vector2float.gd" id="3_y4p58"]
+[ext_resource type="Script" uid="uid://vrcgx1ydc731" path="res://scripts/avfx/avfx_resource/avfx_move_monster.gd" id="4_06ngr"]
+[ext_resource type="Script" uid="uid://bxj6ebonrgrdm" path="res://scripts/avfx/avfx_resource/avfx_play_sfx.gd" id="4_cnbvo"]
+[ext_resource type="Script" uid="uid://bmdopfml6o2xh" path="res://scripts/avfx/avfx_resource/avfx_animation.gd" id="9_438rr"]
+[ext_resource type="PackedScene" uid="uid://66lwo8qhibkg" path="res://scenes/animations/scratch_default.tscn" id="9_qirf0"]
+
+[sub_resource type="Resource" id="Resource_lfifl"]
+script = ExtResource("4_cnbvo")
+clip = ExtResource("3_06ngr")
+metadata/_custom_type_script = "uid://bxj6ebonrgrdm"
+
+[sub_resource type="Resource" id="Resource_85g3d"]
+script = ExtResource("3_y4p58")
+v2 = Vector2(-30, 0)
+f = 0.05
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_choun"]
+script = ExtResource("3_y4p58")
+v2 = Vector2(25, 0)
+f = 0.15
+metadata/_custom_type_script = "uid://dsbcjpnbbuquq"
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("4_06ngr")
+offset_by_duration = Array[ExtResource("3_y4p58")]([SubResource("Resource_85g3d"), SubResource("Resource_choun")])
+target_self = true
+metadata/_custom_type_script = "uid://vrcgx1ydc731"
+
+[sub_resource type="Resource" id="Resource_8v6b0"]
+script = ExtResource("9_438rr")
+animation_scene = ExtResource("9_qirf0")
+target_self = true
+metadata/_custom_type_script = "uid://bmdopfml6o2xh"
+
+[sub_resource type="Resource" id="Resource_cnbvo"]
+script = ExtResource("3_4xntx")
+base_damage = 5
+metadata/_custom_type_script = "uid://fibswyx5ajt5"
+
+[resource]
+script = ExtResource("1_w2dh5")
+name = "Quick Bite"
+max_usages = 50
+use_effects = Array[ExtResource("2_r8efk")]([SubResource("Resource_cnbvo")])
+use_avfx = Array[ExtResource("2_2s7c6")]([SubResource("Resource_lfifl"), SubResource("Resource_tipki"), SubResource("Resource_8v6b0")])
+metadata/_custom_type_script = "uid://bsmnnwsrxm0uy"
