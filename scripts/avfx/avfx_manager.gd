@@ -33,12 +33,17 @@ func queue_avfx_effect_group(resources: Array[AVFXResource], monster: Monster):
 	active = true
 	var group = Node.new()
 	add_child(group)
-	effect_group_queue.append(group)
 	for resource in resources:
+		if resource == null:
+			continue
 		var target = MonsterController.get_monster_opponent(monster)
 		var instance = resource.generate(target, monster)
 		group.add_child(instance)
 		instance.name = resource.get_script().get_global_name()
+	if group.get_children().size() > 0:
+		effect_group_queue.append(group)
+	else:
+		group.queue_free()
 	
 
 func emit_block_start():
@@ -62,4 +67,5 @@ func timeout_current_group():
 		if child.has_method("finish"):
 			child.finish()
 	
+	current_effect_group.queue_free()
 	current_effect_group = null

@@ -11,7 +11,6 @@
 [sub_resource type="Resource" id="Resource_uyy85"]
 script = ExtResource("3_wbmjk")
 animation_scene = ExtResource("2_d870y")
-target_self = true
 metadata/_custom_type_script = "uid://bmdopfml6o2xh"
 
 [sub_resource type="Resource" id="Resource_tipki"]
