@@ -29,9 +29,9 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if current_phase == PHASE.AWAIT_INPUT:
-		if game_state.opponent_monster.chosen_move == null:
-			game_state.opponent_monster.chosen_move = choose_ai_move()
-		if game_state.player_monster.chosen_move != null:
+		if game_state.opponent.chosen_action_type == INTERACTION_MODE.NONE:
+			choose_ai_move()
+		if game_state.player.chosen_action_type != INTERACTION_MODE.NONE:
 			current_phase = PHASE.RESOLVE_ROUND
 	elif current_phase == PHASE.RESOLVE_ROUND:
 		resolve_round()
@@ -74,6 +74,11 @@ func handle_request_menu_fight():
 	for move in game_state.player.current_monster.moves:
 		var label = StringEnabled.new(move.resource.name, move.usages > 0)
 		labels.append(label)
+	if labels.any(func(l): return l.enabled):
+		Events.on_menu_fight.emit(labels)
+	else:
+		# fallback to default move if none
+		TrainerController.set_current_monster_move(game_state.player, -1)
 	
 	Events.on_menu_fight.emit(labels)
 
@@ -103,11 +108,11 @@ func handle_request_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 	# just handle player case
 	match(mode):
 		INTERACTION_MODE.MON:
-			TrainerController.add_trainer_monster_to_battle(game_state.player, index)
+			TrainerController.set_add_trainer_monster_to_battle(game_state.player, index)
 		INTERACTION_MODE.FIGHT:
-			game_state.player_monster.chosen_move = MonsterController.get_monster_move_at_index(game_state.player.current_monster, index)
+			TrainerController.set_current_monster_move(game_state.player, index)
 		INTERACTION_MODE.ITEM:
-			TrainerController.use_item_at_index(game_state.player, index)
+			TrainerController.set_use_item_at_index(game_state.player, index)
 	
 	Events.on_menu_option_selected.emit()
 
@@ -125,25 +130,25 @@ func handle_request_quit():
 func handle_request_restart():
 	setup_model()
 
-func choose_ai_move() -> Move:
+func choose_ai_move() -> void:
 	var legal_move_indices = game_state.opponent_monster.get_legal_move_indices()
 	if legal_move_indices.size() <= 0:
 		AVFXManager.queue_avfx_message("No Moves, Defaulted.")
-		return game_state.opponent_monster.fallback_move
+		TrainerController.set_current_monster_move(game_state.opponent, -1)
 	else:
 		var move_index = legal_move_indices.pick_random()
-		return MonsterController.get_monster_move_at_index(game_state.opponent_monster, move_index)
+		TrainerController.set_current_monster_move(game_state.opponent, move_index)
 	
 
 func resolve_round():
-	var player_goes_first = does_player_go_first(game_state.player_monster, game_state.opponent_monster)
+	var player_goes_first = does_player_go_first()
 	
 	if player_goes_first:
-		MonsterController.do_monster_turn(game_state.player_monster)
-		MonsterController.do_monster_turn(game_state.opponent_monster)
+		TrainerController.do_trainer_turn(game_state.player)
+		TrainerController.do_trainer_turn(game_state.opponent)
 	else:
-		MonsterController.do_monster_turn(game_state.opponent_monster)
-		MonsterController.do_monster_turn(game_state.player_monster)
+		TrainerController.do_trainer_turn(game_state.opponent)
+		TrainerController.do_trainer_turn(game_state.player)
 	
 	if game_state.player_monster.hp == 0:
 		var next_index = TrainerController.get_next_useable_monster_index(game_state.player)
@@ -161,13 +166,23 @@ func resolve_round():
 		else:
 			TrainerController.add_trainer_monster_to_battle(game_state.opponent, next_index)
 
-func does_player_go_first(player_monster: Monster, opponent_monster: Monster) -> bool:
-	assert(player_monster.chosen_move != null)
-	assert(opponent_monster.chosen_move != null)
-
-	if player_monster.chosen_move.priority > opponent_monster.chosen_move.priority:
+func does_player_go_first() -> bool:
+	assert(game_state.player.chosen_action_type != INTERACTION_MODE.NONE)
+	assert(game_state.opponent.chosen_action_type != INTERACTION_MODE.NONE)
+	
+	# this benefits the play, or just add a tie-breaker between the two
+	if game_state.player.chosen_action_type == INTERACTION_MODE.ITEM or game_state.player.chosen_action_type == INTERACTION_MODE.MON:
 		return true
-	elif player_monster.chosen_move.priority < opponent_monster.chosen_move.priority:
+	
+	if game_state.opponent.chosen_action_type == INTERACTION_MODE.ITEM or game_state.opponent.chosen_action_type == INTERACTION_MODE.MON:
+		return false
+	
+	var player_move = MonsterController.get_monster_move_at_index(game_state.player.current_monster, game_state.player.chosen_action_index)
+	var opponent_move = MonsterController.get_monster_move_at_index(game_state.opponent.current_monster, game_state.opponent.chosen_action_index)
+
+	if player_move.priority > opponent_move.priority:
+		return true
+	elif player_move.priority < opponent_move.priority:
 		return false
 	else:
 		return game_state.player_monster.speed >= game_state.opponent_monster.speed
