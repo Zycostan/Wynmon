@@ -89,7 +89,7 @@ func avfx_animation(instance: AVFXInstance, animation_scene: PackedScene):
 		do_avfx_animation(instance, animation_scene)
 
 func do_avfx_animation(instance: AVFXInstance, animation_scene: PackedScene):
-	var frame_target = get_monster_frame(instance.target if instance.resource.target_self else instance.user)
+	var frame_target = get_monster_frame(instance.user if instance.resource.target_self else instance.target)
 	if frame_target == null:
 		instance.finish()
 		return

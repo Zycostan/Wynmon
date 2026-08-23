@@ -57,6 +57,11 @@ func setup_model():
 	game_state.player = TrainerController.create_trainer([monster3, monster1], true)
 	game_state.opponent = TrainerController.create_trainer([monster2], false)
 	
+	game_state.player.name = "Jon"
+	
+	var item_resource = preload("res://content/items/nemract_whiskey.tres")
+	TrainerController.add_item(game_state.player, item_resource, 1)
+	
 	current_phase = PHASE.AWAIT_INPUT
 
 
@@ -86,8 +91,9 @@ func handle_request_menu_items():
 		return
 	
 	var labels: Array[StringEnabled] = []
+	for item in game_state.player.items:
+		labels.append(StringEnabled.new(item.name + " x" + str(item.quantity), true))
 	
-	labels.append(StringEnabled.new("Crack Pot", true))
 	Events.on_menu_items.emit(labels)
 
 func handle_request_menu_option_by_index(mode: INTERACTION_MODE, index: int):
@@ -100,6 +106,8 @@ func handle_request_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 			TrainerController.add_trainer_monster_to_battle(game_state.player, index)
 		INTERACTION_MODE.FIGHT:
 			game_state.player_monster.chosen_move = MonsterController.get_monster_move_at_index(game_state.player.current_monster, index)
+		INTERACTION_MODE.ITEM:
+			TrainerController.use_item_at_index(game_state.player, index)
 	
 	Events.on_menu_option_selected.emit()
 

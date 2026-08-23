@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://byy0br2o06dwo"]
+
+[ext_resource type="Script" uid="uid://1mujhigh0dcc" path="res://scripts/content/item_resource.gd" id="1_jmywg"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_pohcr"]
+[ext_resource type="PackedScene" uid="uid://dvf7684b7r8bx" path="res://scenes/animations/poison_default.tscn" id="3_g56mq"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="3_xtmsn"]
+[ext_resource type="Script" uid="uid://bmdopfml6o2xh" path="res://scripts/avfx/avfx_resource/avfx_animation.gd" id="4_otloq"]
+[ext_resource type="Script" uid="uid://18rxua211x36" path="res://scripts/content/targeted_effects/do_heal.gd" id="6_kq0fo"]
+
+[sub_resource type="Resource" id="Resource_otloq"]
+script = ExtResource("4_otloq")
+animation_scene = ExtResource("3_g56mq")
+target_self = true
+metadata/_custom_type_script = "uid://bmdopfml6o2xh"
+
+[sub_resource type="Resource" id="Resource_g56mq"]
+script = ExtResource("6_kq0fo")
+base_heal = 20
+outcome_filter = 2
+target_self = true
+metadata/_custom_type_script = "uid://18rxua211x36"
+
+[resource]
+script = ExtResource("1_jmywg")
+name = "Nemract Whiskey"
+use_effects = Array[ExtResource("3_xtmsn")]([SubResource("Resource_g56mq")])
+use_avfx = Array[ExtResource("2_pohcr")]([SubResource("Resource_otloq")])
+metadata/_custom_type_script = "uid://1mujhigh0dcc"
