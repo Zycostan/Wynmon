@@ -85,6 +85,16 @@ func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	monster.species = species
 	monster.hp = monster.max_hp
 	monster.nickname = nickname
+	
+	# monster growth per level
+	monster.hp_growth = rng.randf_range(0.4, 1.2)
+	monster.atk_growth = rng.randf_range(0.4, 1.2)
+	monster.def_growth = rng.randf_range(0.4, 1.2)
+	monster.sp_atk_growth = rng.randf_range(0.4, 1.2)
+	monster.sp_atk_growth = rng.randf_range(0.4, 1.2)
+	monster.speed_growth = rng.randf_range(0.4, 1.2)
+	
+	# moves
 	var moves: Array[Move]
 	
 	for move_resource in species.starter_moves:
