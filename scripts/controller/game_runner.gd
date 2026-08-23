@@ -19,6 +19,7 @@ func _ready():
 	Events.request_menu_fight.connect(handle_request_menu_fight)
 	Events.request_menu_run.connect(handle_request_menu_run)
 	Events.request_menu_monsters.connect(handle_request_menu_monsters)
+	Events.request_menu_items.connect(handle_request_menu_items)
 	Events.request_menu_option_by_index.connect(handle_request_menu_option_by_index)
 	Events.on_ui_ready.connect(setup_model)
 	Events.request_restart_game.connect(handle_request_restart)
@@ -79,6 +80,15 @@ func handle_request_menu_monsters():
 	for monster in game_state.player.monsters:
 		labels.append(StringEnabled.new(monster.name, monster.hp > 0))
 	Events.on_menu_select_monster.emit(labels)
+
+func handle_request_menu_items():
+	if current_phase != PHASE.AWAIT_INPUT:
+		return
+	
+	var labels: Array[StringEnabled] = []
+	
+	labels.append(StringEnabled.new("Crack Pot", true))
+	Events.on_menu_items.emit(labels)
 
 func handle_request_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 	if current_phase != PHASE.AWAIT_INPUT:
