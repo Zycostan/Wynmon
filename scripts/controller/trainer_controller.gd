@@ -91,7 +91,7 @@ func use_item_at_index(trainer: Trainer, index: int):
 	for effect in item.resource.use_effects:
 		if effect._should_do(true, false):
 			effect._do(trainer.current_monster, item, game_state, false, logs)
-	
+		
 
 func add_item(trainer: Trainer, item_resource: ItemResource, quanitity: int):
 	var existing_item_index = trainer.items.find_custom(func(found_item): return found_item.resource == item_resource)
@@ -100,7 +100,7 @@ func add_item(trainer: Trainer, item_resource: ItemResource, quanitity: int):
 		var item = Item.new()
 		item.resource = item_resource
 		item.quantity = quanitity
-		game_state.player.items.append(item)
+		trainer.items.append(item)
 	else:
 		var item = trainer.items[existing_item_index]
 		item.quantity += quanitity

@@ -6,7 +6,7 @@ var nickname: String
 var moves: Array[Move]
 var conditions: Array[Condition]
 var experience: int
-var level: int
+var level: int = 1
 var fallback_move
 
 var hp_growth: float

@@ -5,3 +5,9 @@ static func get_crit_chance(monster: Monster) -> float:
 
 static func calculate_monster_stat(base: int, growth: float, level: int, condition_bonus: int):
 	return clamp(base + (level * growth * base / 10.0) + condition_bonus, 1, 250)
+
+static func experience_for_level(level: int):
+	return 200 * level
+
+static func experience_value_of_monster(monster: Monster):
+	return 500 * monster.level

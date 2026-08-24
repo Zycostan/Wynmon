@@ -54,7 +54,7 @@ func avfx_screenshake(avfx_instance: AVFXInstance, v3s: Array[Vector3]):
 		var v2 = Vector2(v3.x, v3.y)
 		tween.tween_property(self, "position", v2, v3.z)
 	
-	tween.tween_property(self, "position", Vector2.ZERO, 0.1)
+	tween.tween_property(self, "position", Vector2.ZERO, 0.0)
 	tween.tween_callback(avfx_instance.finish)
 
 func avfx_projectile(instance: AVFXInstance, texture: Texture2D):
