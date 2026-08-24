@@ -70,7 +70,6 @@ script = ExtResource("5_85g3d")
 metadata/_custom_type_script = "uid://eb2nybvddtwl"
 
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
-visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 192.0

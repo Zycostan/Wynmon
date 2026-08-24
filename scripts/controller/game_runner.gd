@@ -46,26 +46,15 @@ func setup_model():
 	
 	Events.on_new_game_state_created.emit()
 	
-	var species_anathema = preload("res://content/species/anathema.tres")
-	var species_strong = preload("res://content/species/strong_adasaur.tres")
-	var species_agile = preload("res://content/species/agile_adasaur.tres")
+	var start_state = preload("res://content/start_state/default.tres")
 	
-	var monster1 = MonsterController.create_monster(species_anathema)
-	var monster2 = MonsterController.create_monster(species_strong)
-	var monster3 = MonsterController.create_monster(species_agile)
-	var monster4 = MonsterController.create_monster(species_strong)
-	var monster5 = MonsterController.create_monster(species_strong)
-
-	
-	game_state.player = TrainerController.create_trainer([monster3, monster1], true)
-	game_state.opponent = TrainerController.create_trainer([monster4, monster5, monster2], false)
-	
-	game_state.player.name = "Jon"
-	
-	var item_resource = preload("res://content/items/nemract_whiskey.tres")
-	TrainerController.add_item(game_state.player, item_resource, 1)
+	generate_state_from_start_state(start_state)
 	
 	current_phase = PHASE.AWAIT_INPUT
+
+func generate_state_from_start_state(start_state: StartState):
+	game_state.player = start_state.player_start_state.generate_trainer(true)
+	game_state.opponent = start_state.enemy_start_state.generate_trainer(false)
 
 
 func handle_request_menu_fight():
