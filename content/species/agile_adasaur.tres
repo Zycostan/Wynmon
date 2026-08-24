@@ -3,19 +3,34 @@
 [ext_resource type="Texture2D" uid="uid://bdq47xxc08oc6" path="res://assets/art/wymon/sprites/adasaurs/agile_adasaur.png" id="1_elkoo"]
 [ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="1_skr62"]
 [ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="2_elkoo"]
+[ext_resource type="Script" uid="uid://m3b8uiecntpw" path="res://scripts/content/int_move_resource.gd" id="2_gulu3"]
+[ext_resource type="Resource" uid="uid://c7nj0orn7tjn1" path="res://content/moves/quick_attack.tres" id="4_bwbcc"]
 [ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="4_fsleo"]
 [ext_resource type="Resource" uid="uid://4q3rj63fpeki" path="res://content/moves/earthquake.tres" id="5_7gp0f"]
 [ext_resource type="Resource" uid="uid://c6r72sxdkrgsn" path="res://content/moves/poison_sting.tres" id="6_gulu3"]
+
+[sub_resource type="Resource" id="Resource_xyi5y"]
+script = ExtResource("2_gulu3")
+integer = 11
+move = ExtResource("5_7gp0f")
+metadata/_custom_type_script = "uid://m3b8uiecntpw"
+
+[sub_resource type="Resource" id="Resource_bwbcc"]
+script = ExtResource("2_gulu3")
+integer = 12
+move = ExtResource("4_bwbcc")
+metadata/_custom_type_script = "uid://m3b8uiecntpw"
 
 [resource]
 script = ExtResource("1_skr62")
 image = ExtResource("1_elkoo")
 name = "Agile Adasaur"
-starter_moves = Array[ExtResource("2_elkoo")]([ExtResource("4_fsleo"), ExtResource("5_7gp0f"), ExtResource("6_gulu3")])
+starter_moves = Array[ExtResource("2_elkoo")]([ExtResource("4_fsleo"), ExtResource("6_gulu3")])
 base_max_hp = 65
-base_attack = 80
+base_attack = 100
 base_defense = 55
 base_speed = 145
 base_sp_attack = 60
 base_sp_defense = 85
+learned_moves = Array[ExtResource("2_gulu3")]([SubResource("Resource_xyi5y"), SubResource("Resource_bwbcc")])
 metadata/_custom_type_script = "uid://c21nigvw65tmi"

@@ -112,9 +112,10 @@ func handle_request_menu_run():
 	if current_phase != PHASE.AWAIT_INPUT:
 		return
 	
-	AVFXManager.queue_avfx_message("You got away safely.")	
-	await get_tree().create_timer(2.0).timeout
-	handle_request_quit()
+	var choice_run = ChoiceResource.new("> FLEE", handle_request_quit)
+	var choice_cancel = ChoiceResource.new("> REMAIN", func(): return)
+	AVFXManager.queue_avfx_message("If you flee, your cowardice will not be forgotten", [choice_run, choice_cancel])
+	
 
 func handle_request_quit():
 	get_tree().quit()

@@ -34,6 +34,7 @@ controls = NodePath("left/controls_menu")
 message_panel = NodePath("left/message_panel")
 
 [node name="left" type="VBoxContainer" parent="battle_renderer" unique_id=2081656364]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 0
 offset_right = 148.0
 offset_bottom = 164.0
@@ -49,27 +50,38 @@ your_pov = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="message_panel" type="Panel" parent="battle_renderer/left" unique_id=566595197 node_paths=PackedStringArray("label")]
+[node name="message_panel" type="Panel" parent="battle_renderer/left" unique_id=566595197 node_paths=PackedStringArray("label", "choice_parent")]
 layout_mode = 2
 script = ExtResource("5_ya4ey")
-label = NodePath("TypeoutLabel")
+label = NodePath("layout/TypeoutLabel")
+choice_parent = NodePath("layout/choices")
 
-[node name="TypeoutLabel" type="Label" parent="battle_renderer/left/message_panel" unique_id=1196388807]
+[node name="layout" type="VBoxContainer" parent="battle_renderer/left/message_panel" unique_id=1066315147]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -17.5
-offset_right = 52.0
-offset_bottom = 17.5
+anchors_preset = -1
+anchor_left = -0.054
+anchor_right = 1.973
+offset_left = -0.007999897
+offset_top = -16.0
+offset_right = -0.0039978027
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="TypeoutLabel" type="Label" parent="battle_renderer/left/message_panel/layout" unique_id=1196388807]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 text = "The quick brown fox jumped over the lazy dog"
 autowrap_mode = 2
 script = ExtResource("5_85g3d")
 metadata/_custom_type_script = "uid://eb2nybvddtwl"
 
+[node name="choices" type="HBoxContainer" parent="battle_renderer/left/message_panel/layout" unique_id=1897316963]
+layout_mode = 2
+
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 192.0

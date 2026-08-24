@@ -13,3 +13,5 @@ extends Resource
 @export var base_speed: int
 @export var base_sp_attack: int
 @export var base_sp_defense: int
+
+@export var learned_moves: Array[IntMoveResource]
