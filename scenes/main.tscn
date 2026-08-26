@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://eb2nybvddtwl" path="res://scripts/ui/typeout_label.gd" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://crpahbrk5mgcm" path="res://scenes/controls_menu.tscn" id="5_choun"]
 [ext_resource type="Script" uid="uid://cwciklq80pdf" path="res://scripts/ui/message_panel.gd" id="5_ya4ey"]
+[ext_resource type="Script" uid="uid://c8c2ar3x10q7a" path="res://scripts/ui/option_panel.gd" id="7_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://b5pwbmjdjsdbc" path="res://scenes/log.tscn" id="7_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bvnmhvojccgov" path="res://scenes/you.tscn" id="8_eb6dy"]
 [ext_resource type="FontFile" uid="uid://xj2o3brbo27g" path="res://assets/fonts/basis33.ttf" id="9_gqmmt"]
-[ext_resource type="PackedScene" uid="uid://nm6g7isc13cg" path="res://scenes/outcome.tscn" id="10_a8y0u"]
 
 [node name="main" type="Node2D" unique_id=1007213551]
 
@@ -18,7 +18,7 @@ position = Vector2(28, -53)
 offset = Vector2(196.46, 180)
 zoom = Vector2(2.57, 2.57)
 
-[node name="battle_renderer" type="Control" parent="." unique_id=1002199298 node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump", "controls", "message_panel")]
+[node name="battle_renderer" type="Control" parent="." unique_id=1002199298 node_paths=PackedStringArray("enemy_mon_module", "player_mon_module", "enemy_mon_state_dump", "player_mon_state_dump", "controls", "message_panel", "move_replace_panel")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -32,6 +32,7 @@ enemy_mon_state_dump = NodePath("tabs/them")
 player_mon_state_dump = NodePath("tabs/you")
 controls = NodePath("left/controls_menu")
 message_panel = NodePath("left/message_panel")
+move_replace_panel = NodePath("left/move_select_panel")
 
 [node name="left" type="VBoxContainer" parent="battle_renderer" unique_id=2081656364]
 custom_minimum_size = Vector2(150, 0)
@@ -80,6 +81,18 @@ metadata/_custom_type_script = "uid://eb2nybvddtwl"
 [node name="choices" type="HBoxContainer" parent="battle_renderer/left/message_panel/layout" unique_id=1897316963]
 layout_mode = 2
 
+[node name="move_select_panel" type="Control" parent="battle_renderer/left" unique_id=214934006 node_paths=PackedStringArray("options_parent")]
+layout_mode = 2
+script = ExtResource("7_eb6dy")
+mode = 4
+options_parent = NodePath("options")
+metadata/_custom_type_script = "uid://c8c2ar3x10q7a"
+
+[node name="options" type="VBoxContainer" parent="battle_renderer/left/move_select_panel" unique_id=1185873734]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
 visible = false
 texture_filter = 1
@@ -104,11 +117,3 @@ your_monster = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
-
-[node name="outcome" parent="battle_renderer" unique_id=576490348 instance=ExtResource("10_a8y0u")]
-visible = false
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 110.0
-offset_bottom = 61.0

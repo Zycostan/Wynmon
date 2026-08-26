@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="4_fsleo"]
 [ext_resource type="Resource" uid="uid://4q3rj63fpeki" path="res://content/moves/earthquake.tres" id="5_7gp0f"]
 [ext_resource type="Resource" uid="uid://c6r72sxdkrgsn" path="res://content/moves/poison_sting.tres" id="6_gulu3"]
+[ext_resource type="Resource" uid="uid://d00rkyfa3gjsm" path="res://content/moves/heal.tres" id="9_5v5uf"]
+[ext_resource type="Resource" uid="uid://ctr04oo78ep7i" path="res://content/moves/rock_dance.tres" id="10_s063d"]
 
 [sub_resource type="Resource" id="Resource_xyi5y"]
 script = ExtResource("2_gulu3")
@@ -25,7 +27,7 @@ metadata/_custom_type_script = "uid://m3b8uiecntpw"
 script = ExtResource("1_skr62")
 image = ExtResource("1_elkoo")
 name = "Agile Adasaur"
-starter_moves = Array[ExtResource("2_elkoo")]([ExtResource("4_fsleo"), ExtResource("6_gulu3")])
+starter_moves = Array[ExtResource("2_elkoo")]([ExtResource("4_fsleo"), ExtResource("6_gulu3"), ExtResource("9_5v5uf"), ExtResource("10_s063d")])
 base_max_hp = 65
 base_attack = 100
 base_defense = 55

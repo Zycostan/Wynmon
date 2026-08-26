@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://byy0br2o06dwo" path="res://content/items/nemract_whiskey.tres" id="2_sqlun"]
 [ext_resource type="Script" uid="uid://c6do4fa07u3vm" path="res://scripts/content/start_states/monster_start_state.gd" id="2_t8c35"]
 [ext_resource type="Script" uid="uid://duqjcxbvq0sio" path="res://scripts/content/start_states/trainer_start_state.gd" id="3_xehwm"]
-[ext_resource type="Resource" uid="uid://b4mrrfpbxw76r" path="res://content/species/intelligent_adasaur.tres" id="4_sqlun"]
 [ext_resource type="Resource" uid="uid://d1p2u2pskgq1f" path="res://content/species/agile_adasaur.tres" id="6_8dnqy"]
 [ext_resource type="Resource" uid="uid://bs1h0xf2b8eak" path="res://content/species/strong_adasaur.tres" id="7_i3l1s"]
 
@@ -18,14 +17,14 @@ metadata/_custom_type_script = "uid://b76w5usgdllef"
 [sub_resource type="Resource" id="Resource_trceg"]
 script = ExtResource("2_t8c35")
 nickname = "Her Majesty"
-species = ExtResource("4_sqlun")
-level = 9
+species = ExtResource("7_i3l1s")
+level = 10
 metadata/_custom_type_script = "uid://c6do4fa07u3vm"
 
 [sub_resource type="Resource" id="Resource_yriof"]
 script = ExtResource("3_xehwm")
 name = "Opponentname"
-monsters = Array[ExtResource("2_t8c35")]([SubResource("Resource_trceg"), SubResource("Resource_trceg"), SubResource("Resource_trceg")])
+monsters = Array[ExtResource("2_t8c35")]([SubResource("Resource_trceg")])
 items = Array[ExtResource("1_lcie8")]([SubResource("Resource_a8y0u")])
 metadata/_custom_type_script = "uid://duqjcxbvq0sio"
 

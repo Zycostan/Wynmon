@@ -4,7 +4,7 @@ extends Node
 
 # INTERACTION_MODE encodes the menu states the main battle menu can be in.
 # Since RUN isn't a special menu, it does not get an entry here
-enum INTERACTION_MODE {NONE, FIGHT, ITEM, MON}
+enum INTERACTION_MODE {NONE, FIGHT, ITEM, MON, MOVE_REPLACE}
 
 enum PHASE { AWAIT_INPUT, RESOLVE_ROUND, AWAIT_AVFX, GAME_OVER }
 
@@ -21,11 +21,14 @@ func _ready():
 	Events.request_menu_monsters.connect(handle_request_menu_monsters)
 	Events.request_menu_items.connect(handle_request_menu_items)
 	Events.request_menu_option_by_index.connect(handle_request_menu_option_by_index)
+	
 	Events.on_ui_ready.connect(setup_model)
+	
 	Events.request_restart_game.connect(handle_request_restart)
 	Events.request_quit.connect(handle_request_quit)
 	Events.on_avfx_block_start.connect(func(): current_phase = PHASE.AWAIT_AVFX)
 	Events.on_avfx_block_end.connect(func(): current_phase = PHASE.AWAIT_INPUT)
+	Events.on_avfx_function.connect(handle_avfx_function)
 
 func _process(delta: float) -> void:
 	if current_phase == PHASE.AWAIT_INPUT:
@@ -105,6 +108,8 @@ func handle_request_menu_option_by_index(mode: INTERACTION_MODE, index: int):
 			TrainerController.set_current_monster_move(game_state.player, index)
 		INTERACTION_MODE.ITEM:
 			TrainerController.set_use_item_at_index(game_state.player, index)
+		INTERACTION_MODE.MOVE_REPLACE:
+			MonsterController.set_monster_move_at_index_to_pending_move(game_state.player_monster, index)
 	
 	Events.on_menu_option_selected.emit()
 
@@ -143,12 +148,18 @@ func resolve_round():
 		TrainerController.do_trainer_turn(game_state.opponent)
 		TrainerController.do_trainer_turn(game_state.player)
 	
+	var quit_choice = ChoiceResource.new("> Flee", handle_request_quit)
+	var restart_choice = ChoiceResource.new("> Try Again", handle_request_restart)
+	
 	if game_state.player_monster.hp == 0:
 		MonsterController.add_experience_to_monster(game_state.opponent_monster, Calculations.experience_value_of_monster(game_state.player_monster))
 		var next_index = TrainerController.get_next_useable_monster_index(game_state.player)
 		if next_index == -1:
 			current_phase = PHASE.GAME_OVER
 			Events.on_game_over.emit(true)
+			
+			AVFXManager.queue_avfx_message("All your monsters fainted, lost.", [quit_choice, restart_choice])
+			
 		else:
 			TrainerController.add_trainer_monster_to_battle(game_state.player, next_index)
 	
@@ -158,8 +169,17 @@ func resolve_round():
 		if next_index == -1:
 			current_phase = PHASE.GAME_OVER
 			Events.on_game_over.emit(true)
+			
+			AVFXManager.queue_avfx_message("Your foes beast has been vanquished", [quit_choice, restart_choice])
+			
 		else:
 			TrainerController.add_trainer_monster_to_battle(game_state.opponent, next_index)
+	
+	var update_player_mon = AVFXFunction.new(func(): Events.on_monster_updated.emit(game_state.player_monster))
+	var update_opponent_mon = AVFXFunction.new(func(): Events.on_monster_updated.emit(game_state.opponent_monster))
+	
+	AVFXManager.queue_avfx_effect_group([update_player_mon, update_opponent_mon], null)
+	
 
 func does_player_go_first() -> bool:
 	assert(game_state.player.chosen_action_type != INTERACTION_MODE.NONE)
@@ -181,3 +201,14 @@ func does_player_go_first() -> bool:
 		return false
 	else:
 		return game_state.player_monster.speed >= game_state.opponent_monster.speed
+
+func handle_avfx_function(instance: AVFXInstance, function: Callable):
+	if instance.resource.delay == 0:
+		call_avfx_function(instance, function)
+	else:
+		await get_tree().create_timer(instance.resource.delay).timeout
+		call_avfx_function(instance, function)
+
+func call_avfx_function(instance: AVFXInstance, function: Callable):
+	function.call()
+	instance.finish()

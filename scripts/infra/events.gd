@@ -19,6 +19,8 @@ signal on_monster_added_to_battle
 signal on_new_game_state_created
 signal on_menu_option_selected
 signal on_monster_updated
+signal on_player_pending_learn_move
+signal on_player_move_replace_completed
 
 # Events sent internally
 signal request_log
@@ -37,3 +39,4 @@ signal on_avfx_flash_monster
 signal on_avfx_flash_screen
 signal on_avfx_screenshake
 signal on_avfx_messages
+signal on_avfx_function

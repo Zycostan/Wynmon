@@ -20,6 +20,8 @@ var speed_growth: float
 
 #cleared after each turn
 var move_blocked
+var pending_moves_queue: Array[MoveResource]
+var pending_move: MoveResource
 
 var image: Texture2D:
 	get: return species.image

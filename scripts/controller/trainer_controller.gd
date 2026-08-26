@@ -78,6 +78,7 @@ func use_item_at_index(trainer: Trainer, index: int):
 	var logs: Array[String] = []
 	
 	var use_string = item.use_message.format({"user_name": trainer.name, "item_name": item.name})
+	logs.append(use_string)
 	
 	var message_avfx = AVFXMessages.fromStrings(logs as Array[String])
 	var avfx_group = item.resource.use_avfx.duplicate()
@@ -91,7 +92,6 @@ func use_item_at_index(trainer: Trainer, index: int):
 		if effect._should_do(true, false):
 			effect._do(trainer.current_monster, item, game_state, false, logs)
 		
-	logs.append(use_string)
 
 func add_item(trainer: Trainer, item_resource: ItemResource, quanitity: int):
 	var existing_item_index = trainer.items.find_custom(func(found_item): return found_item.resource == item_resource)

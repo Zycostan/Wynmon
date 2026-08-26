@@ -59,8 +59,8 @@ func show_message(message):
 		var btn = Button.new()
 		choice_parent.add_child(btn)
 		btn.text = choice.text
-		btn.pressed.connect(func(): do_choise(choice.function))
+		btn.pressed.connect(func(): do_choice(choice.function))
 
-func do_choise(choice: Callable):
-	choice.call()
+func do_choice(choice: Callable):
 	dismiss_message()
+	choice.call()
