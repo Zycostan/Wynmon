@@ -19,13 +19,15 @@ func create_trainer(monsters: Array[Monster], is_player: bool) -> Trainer:
 
 func do_trainer_turn(trainer: Trainer):
 	MonsterController.on_turn_begun(trainer.current_monster)
+	match trainer.chosen_action_type:
+		GameRunner.INTERACTION_MODE.MON:
+			add_trainer_monster_to_battle(trainer, trainer.chosen_action_index)
+			MonsterController.on_turn_begun(trainer.current_monster)
 	
 	match trainer.chosen_action_type:
 		GameRunner.INTERACTION_MODE.FIGHT:
 			var move = MonsterController.get_monster_move_at_index(trainer.current_monster, trainer.chosen_action_index)
 			MonsterController.use_monster_move(trainer.current_monster, move)
-		GameRunner.INTERACTION_MODE.MON:
-			add_trainer_monster_to_battle(trainer, trainer.chosen_action_index)
 		GameRunner.INTERACTION_MODE.ITEM:
 			use_item_at_index(trainer, trainer.chosen_action_index)
 	

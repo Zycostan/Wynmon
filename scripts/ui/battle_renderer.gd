@@ -59,7 +59,7 @@ func avfx_flash_screen(avfx_instance: AVFXInstance, v2s: Array[Vector2]):
 		tween.tween_property(self, "modulate", color, v2.y)
 	
 	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
-	tween.tween_callback(self.finish)
+	tween.tween_callback(avfx_instance.finish)
 
 func avfx_screenshake(avfx_instance: AVFXInstance, v3s: Array[Vector3]):
 	var tween = get_tree().create_tween()

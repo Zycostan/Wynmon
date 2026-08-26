@@ -15,7 +15,8 @@ All pretty modular just in case you want to modify it a bit, or make something o
 
 ## Major Issues
 
-- Switching to a wynmon and using its moves even if current one is alive will cause crashes
+- Switching to a wynmon and using its moves even if current one is alive will cause crashes {FIXED}
+
 
 ## To Be Added
 - Monster Catching

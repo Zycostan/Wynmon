@@ -82,8 +82,10 @@ func handle_request_menu_monsters():
 		return
 	
 	var labels: Array[StringEnabled] = []
-	for monster in game_state.player.monsters:
-		labels.append(StringEnabled.new(monster.name, monster.hp > 0))
+	for i in range(game_state.player.monsters.size()):
+		var monster = game_state.player.monsters[i]
+		var selectable = monster.hp > 0 and i != game_state.player.current_monster_index
+		labels.append(StringEnabled.new(monster.name, selectable))
 	Events.on_menu_select_monster.emit(labels)
 
 func handle_request_menu_items():
