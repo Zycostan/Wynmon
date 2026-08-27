@@ -31,9 +31,6 @@ func adjust_monster_hitpoints(monster: Monster, amount: int):
 	if monster.hp == 0:
 		faint_monster(monster)
 
-func faint_monster(monster: Monster):
-	return
-
 func get_monster_move_at_index(monster: Monster, index: int) -> Move:
 	if index == -1:
 		return monster.fallback_move
@@ -82,6 +79,19 @@ func use_monster_move(monster: Monster, move: Move):
 	var update_effect: AVFXFunction = AVFXFunction.new(func(): Events.on_monster_updated.emit(monster))
 	var target_effect: AVFXFunction = AVFXFunction.new(func(): Events.on_monster_updated.emit(opponent))
 	AVFXManager.queue_avfx_effect_group([update_effect, target_effect], monster)
+
+func faint_monster(monster: Monster):
+	monster.conditions.clear()
+	
+	var flash = AVFXFlashMonster.new()
+	flash.target_self = true
+	flash.delay = 0.0
+	
+	var faint_message = AVFXMessages.fromStrings(["{monster_name} fainted!".format({"monster_name": monster.name})])
+	
+	await get_tree().create_timer(1.0).timeout
+	AVFXManager.queue_avfx_effect_group([faint_message], monster)
+	
 
 func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	var monster = Monster.new()

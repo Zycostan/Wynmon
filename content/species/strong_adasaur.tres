@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="SpeciesResource" format=3 uid="uid://bs1h0xf2b8eak"]
 
 [ext_resource type="Texture2D" uid="uid://d0gdbj3qkpgxt" path="res://assets/art/wymon/sprites/adasaurs/strong_adasaur.png" id="1_kxd3o"]
+[ext_resource type="Script" uid="uid://m3b8uiecntpw" path="res://scripts/content/int_move_resource.gd" id="2_4tibl"]
 [ext_resource type="Script" uid="uid://c21nigvw65tmi" path="res://scripts/content/species_resource.gd" id="2_osv4f"]
 [ext_resource type="Script" uid="uid://bsmnnwsrxm0uy" path="res://scripts/content/move_resource.gd" id="3_4tibl"]
 [ext_resource type="Resource" uid="uid://bl4gcbg2nt1r2" path="res://content/moves/quick_bite.tres" id="4_mq6rm"]
