@@ -120,3 +120,9 @@ func remove_item(trainer: Trainer, item_resource: ItemResource, quanitity: int):
 	
 	if item.quantity == 0:
 		trainer.items.remove_at(existing_item_index)
+
+func transfer_caught_monster(catcher: Trainer, target_trainer: Trainer, monster: Monster):
+	var index = target_trainer.monsters.find(monster)
+	if index != -1:
+		target_trainer.monsters.remove_at(index)
+	catcher.monsters.append(monster)

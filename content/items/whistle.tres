@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://yp72qx8r4d3o"]
+
+[ext_resource type="Script" uid="uid://1mujhigh0dcc" path="res://scripts/content/item_resource.gd" id="1_pvg7o"]
+[ext_resource type="Script" uid="uid://cn18wwuvb7m0w" path="res://scripts/avfx/avfx_resource/avfx_resource.gd" id="2_4gwx4"]
+[ext_resource type="Script" uid="uid://c2xn3nncvfu2t" path="res://scripts/content/targeted_effects/targeted_effect.gd" id="3_mcayq"]
+
+[resource]
+script = ExtResource("1_pvg7o")
+name = "Whistle"
+use_effects = Array[ExtResource("3_mcayq")]([null])
+metadata/_custom_type_script = "uid://1mujhigh0dcc"
