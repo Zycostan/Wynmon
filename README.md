@@ -24,3 +24,14 @@ All pretty modular just in case you want to modify it a bit, or make something o
 - Same type attack bonuses
 - the entire fucking overworld
 -- The Entire Province of Wynn
+
+### Actual important stuff to do
+- fix bugs
+- add world state
+- add save data
+- add scene manager
+- declutter controllers
+- overworld scene
+- wild encounters
+- catching stuff
+- trainers, gyms, badges
