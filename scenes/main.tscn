@@ -26,72 +26,13 @@ offset_right = 432.0
 offset_bottom = 178.0
 theme = ExtResource("2_trceg")
 script = ExtResource("3_a8y0u")
-enemy_mon_module = NodePath("left/mon_renderer_module")
-player_mon_module = NodePath("left/mon_renderer_module2")
+enemy_mon_module = NodePath("mon_renderer_module")
+player_mon_module = NodePath("mon_renderer_module2")
 enemy_mon_state_dump = NodePath("tabs/them")
 player_mon_state_dump = NodePath("tabs/you")
-controls = NodePath("left/controls_menu")
-message_panel = NodePath("left/message_panel")
-move_replace_panel = NodePath("left/move_select_panel")
-
-[node name="left" type="VBoxContainer" parent="battle_renderer" unique_id=2081656364]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 0
-offset_right = 148.0
-offset_bottom = 164.0
-
-[node name="mon_renderer_module" parent="battle_renderer/left" unique_id=559844280 instance=ExtResource("4_jkv2x")]
-layout_mode = 2
-
-[node name="mon_renderer_module2" parent="battle_renderer/left" unique_id=1388763753 instance=ExtResource("4_jkv2x")]
-layout_mode = 2
-your_pov = true
-
-[node name="controls_menu" parent="battle_renderer/left" unique_id=251551685 instance=ExtResource("5_choun")]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-
-[node name="message_panel" type="Panel" parent="battle_renderer/left" unique_id=566595197 node_paths=PackedStringArray("label", "choice_parent")]
-layout_mode = 2
-script = ExtResource("5_ya4ey")
-label = NodePath("layout/TypeoutLabel")
-choice_parent = NodePath("layout/choices")
-
-[node name="layout" type="VBoxContainer" parent="battle_renderer/left/message_panel" unique_id=1066315147]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.054
-anchor_right = 1.973
-offset_left = -0.007999897
-offset_top = -16.0
-offset_right = -0.0039978027
-offset_bottom = 23.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_group_ = true
-
-[node name="TypeoutLabel" type="Label" parent="battle_renderer/left/message_panel/layout" unique_id=1196388807]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "The quick brown fox jumped over the lazy dog"
-autowrap_mode = 2
-script = ExtResource("5_85g3d")
-metadata/_custom_type_script = "uid://eb2nybvddtwl"
-
-[node name="choices" type="HBoxContainer" parent="battle_renderer/left/message_panel/layout" unique_id=1897316963]
-layout_mode = 2
-
-[node name="move_select_panel" type="Control" parent="battle_renderer/left" unique_id=214934006 node_paths=PackedStringArray("options_parent")]
-layout_mode = 2
-script = ExtResource("7_eb6dy")
-mode = 4
-options_parent = NodePath("options")
-metadata/_custom_type_script = "uid://c8c2ar3x10q7a"
-
-[node name="options" type="VBoxContainer" parent="battle_renderer/left/move_select_panel" unique_id=1185873734]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+controls = NodePath("controls_menu")
+message_panel = NodePath("message_panel")
+move_replace_panel = NodePath("move_select_panel")
 
 [node name="tabs" type="TabContainer" parent="battle_renderer" unique_id=1019627266]
 visible = false
@@ -117,3 +58,74 @@ your_monster = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="mon_renderer_module" parent="battle_renderer" unique_id=559844280 instance=ExtResource("4_jkv2x")]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 32.0
+offset_right = 398.0
+offset_bottom = 96.0
+
+[node name="mon_renderer_module2" parent="battle_renderer" unique_id=1388763753 instance=ExtResource("4_jkv2x")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 158.0
+offset_bottom = 160.0
+your_pov = true
+
+[node name="controls_menu" parent="battle_renderer" unique_id=251551685 instance=ExtResource("5_choun")]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_left = 272.0
+offset_top = 176.0
+offset_right = 422.0
+offset_bottom = 236.0
+
+[node name="message_panel" type="Panel" parent="battle_renderer" unique_id=566595197 node_paths=PackedStringArray("label", "choice_parent")]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 150.0
+offset_bottom = 200.0
+script = ExtResource("5_ya4ey")
+label = NodePath("layout/TypeoutLabel")
+choice_parent = NodePath("layout/choices")
+
+[node name="layout" type="VBoxContainer" parent="battle_renderer/message_panel" unique_id=1066315147]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.054
+anchor_right = 1.973
+offset_left = 0.10000038
+offset_top = -8.0
+offset_right = 0.104003906
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="TypeoutLabel" type="Label" parent="battle_renderer/message_panel/layout" unique_id=1196388807]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "The quick brown fox jumped over the lazy dog"
+autowrap_mode = 2
+script = ExtResource("5_85g3d")
+metadata/_custom_type_script = "uid://eb2nybvddtwl"
+
+[node name="choices" type="HBoxContainer" parent="battle_renderer/message_panel/layout" unique_id=1897316963]
+layout_mode = 2
+
+[node name="move_select_panel" type="Control" parent="battle_renderer" unique_id=214934006 node_paths=PackedStringArray("options_parent")]
+anchors_preset = 0
+offset_top = 204.0
+offset_right = 150.0
+offset_bottom = 204.0
+script = ExtResource("7_eb6dy")
+mode = 4
+options_parent = NodePath("options")
+metadata/_custom_type_script = "uid://c8c2ar3x10q7a"
+
+[node name="options" type="VBoxContainer" parent="battle_renderer/move_select_panel" unique_id=1185873734]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
