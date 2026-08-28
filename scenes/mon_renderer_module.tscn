@@ -27,7 +27,6 @@ metadata/_edit_group_ = true
 [node name="name" type="Label" parent="monster_data" unique_id=641293135]
 texture_filter = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "MONSTERNAME"
 
 [node name="hpbar" type="ProgressBar" parent="monster_data" unique_id=387742672]
@@ -43,13 +42,11 @@ layout_mode = 2
 [node name="hp" type="Label" parent="monster_data/sub-hp" unique_id=1853607235]
 texture_filter = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "23/23"
 
 [node name="status" type="Label" parent="monster_data/sub-hp" unique_id=1193942746]
 texture_filter = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "BRN"
 
 [node name="frame" type="Control" parent="." unique_id=1165020661]
