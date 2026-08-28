@@ -7,11 +7,11 @@ Although it will be limited to just the Wynn province for now, I'll expand on it
 ## Features
 
 - Wynmon battling
--- Turn based combat
--- Leveling
--- Moves
--- Items
- -- Trainers
+- Turn based combat
+- Leveling
+- Moves
+- Items
+ - Trainers
 All pretty modular just in case you want to modify it a bit, or make something of your own with it
 
 ## Major Issues
