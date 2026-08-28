@@ -59,6 +59,7 @@ text = "> RUN"
 alignment = 0
 
 [node name="ft" type="ScrollContainer" parent="menu" unique_id=516005590 node_paths=PackedStringArray("options_parent")]
+visible = false
 layout_mode = 0
 offset_right = 191.0
 offset_bottom = 99.0
@@ -98,8 +99,12 @@ columns = 2
 
 [node name="option_back" type="Button" parent="menu" unique_id=1542746437]
 visible = false
-layout_mode = 0
-offset_top = 72.0
-offset_right = 40.0
-offset_bottom = 112.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_vertical = 0
 text = "BACK"
