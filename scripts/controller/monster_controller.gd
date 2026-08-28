@@ -1,29 +1,29 @@
 extends Node
 
-var battle_state: BattleState
+var game_state: GameState
 var rng: RandomNumberGenerator
 
 func _ready() -> void:
-	Events.on_new_battle_state_created.connect(get_controller_components)
+	Events.on_new_game_state_created.connect(get_controller_components)
 
 func get_controller_components():
-	battle_state = GameRunner.battle_state
+	game_state = GameRunner.game_state
 	rng = GameRunner.rng
 
 func get_monster_opponent(monster: Monster) -> Monster:
-	if monster == battle_state.player_monster:
-		return battle_state.opponent_monster
+	if monster == game_state.player_monster:
+		return game_state.opponent_monster
 	
-	if monster == battle_state.opponent_monster:
-		return battle_state.player_monster
+	if monster == game_state.opponent_monster:
+		return game_state.player_monster
 	
 	return null
 
 func get_current_monster() -> Monster:
-	if battle_state.is_player_turn:
-		return battle_state.player_monster
+	if game_state.is_player_turn:
+		return game_state.player_monster
 	else:
-		return battle_state.opponent_monster
+		return game_state.opponent_monster
 
 func adjust_monster_hitpoints(monster: Monster, amount: int):
 	monster.hp = clamp(monster.hp + amount, 0, monster.max_hp)
@@ -68,7 +68,7 @@ func use_monster_move(monster: Monster, move: Move):
 	
 	for effect in move.resource.use_effects:
 		if effect._should_do(hit, crit):
-			effect._do(monster, move, battle_state, crit, logs)
+			effect._do(monster, move, game_state, crit, logs)
 	
 	var message_avfx = AVFXMessages.fromStrings(logs as Array[String])
 	var avfx_group = move.resource.use_avfx.duplicate()
@@ -157,7 +157,7 @@ func give_move_replace_choice(monster: Monster):
 		return
 	
 	monster.pending_move = monster.pending_moves_queue.pop_front()
-	if monster == battle_state.player_monster:
+	if monster == game_state.player_monster:
 		var labels: Array[StringEnabled] = []
 		
 		for move in monster.moves:
@@ -203,7 +203,7 @@ func on_turn_begun(monster: Monster):
 		var logs: Array[String] = []
 		AVFXManager.queue_avfx_effect_group(condition.resource.on_begin_turn_avfx, monster)
 		for effect in condition.resource.on_begin_turn_effects:
-			effect._do(monster, condition, battle_state, false, logs)
+			effect._do(monster, condition, game_state, false, logs)
 		condition.duration_remaining -= 1
 		if condition.duration_remaining <= 0:
 			end_condition(monster, condition)

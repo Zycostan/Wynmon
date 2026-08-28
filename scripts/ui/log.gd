@@ -5,7 +5,7 @@ extends ScrollContainer
 func _ready():
 	# Connect signal listeners
 	Events.request_log.connect(log)
-	Events.on_new_battle_state_created.connect(clear)
+	Events.on_new_game_state_created.connect(clear)
 	
 
 func log(text: String):
