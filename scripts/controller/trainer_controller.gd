@@ -1,13 +1,13 @@
 extends Node
 
-var game_state: GameState
+var battle_state: BattleState
 var rng: RandomNumberGenerator
 
 func _ready() -> void:
-	Events.on_new_game_state_created.connect(get_controller_components)
+	Events.on_new_battle_state_created.connect(get_controller_components)
 
 func get_controller_components():
-	game_state = GameRunner.game_state
+	battle_state = GameRunner.battle_state
 	rng = GameRunner.rng
 
 func create_trainer(monsters: Array[Monster], is_player: bool) -> Trainer:
@@ -92,7 +92,7 @@ func use_item_at_index(trainer: Trainer, index: int):
 	
 	for effect in item.resource.use_effects:
 		if effect._should_do(true, false):
-			effect._do(trainer.current_monster, item, game_state, false, logs)
+			effect._do(trainer.current_monster, item, battle_state, false, logs)
 		
 
 func add_item(trainer: Trainer, item_resource: ItemResource, quanitity: int):

@@ -11,7 +11,7 @@ enum OutcomFilter {
 @export var outcome_filter: OutcomFilter
 @export var target_self: bool
 
-func _do(doer: Monster, source: Object, game_state: GameState, is_critical: bool, logs: Array[String]):
+func _do(doer: Monster, source: Object, battle_state: BattleState, is_critical: bool, logs: Array[String]):
 	return
 
 func _should_do(is_hit: bool, is_critical: bool) -> bool:

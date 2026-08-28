@@ -1,4 +1,4 @@
-class_name GameState
+class_name BattleState
 
 var player: Trainer
 var opponent: Trainer
