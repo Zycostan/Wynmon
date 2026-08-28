@@ -59,7 +59,6 @@ text = "> RUN"
 alignment = 0
 
 [node name="ft" type="ScrollContainer" parent="menu" unique_id=516005590 node_paths=PackedStringArray("options_parent")]
-visible = false
 layout_mode = 0
 offset_right = 191.0
 offset_bottom = 99.0
@@ -67,7 +66,7 @@ script = ExtResource("2_knfhs")
 mode = 1
 options_parent = NodePath("ft_options")
 
-[node name="ft_options" type="GridContainer" parent="menu/ft" unique_id=340952688]
+[node name="ft_options" type="GridContainer" parent="menu/ft" unique_id=410953885]
 layout_mode = 2
 columns = 2
 
@@ -80,7 +79,7 @@ script = ExtResource("2_knfhs")
 mode = 2
 options_parent = NodePath("item_options")
 
-[node name="item_options" type="GridContainer" parent="menu/items" unique_id=2037377812]
+[node name="item_options" type="GridContainer" parent="menu/items" unique_id=623376959]
 layout_mode = 2
 columns = 2
 
@@ -91,11 +90,10 @@ offset_right = 183.0
 offset_bottom = 85.0
 script = ExtResource("2_knfhs")
 mode = 3
-options_parent = NodePath("../main-controls/mons")
+options_parent = NodePath("mon_options")
 
-[node name="mon_options" type="GridContainer" parent="menu/mons" unique_id=863488487]
+[node name="mon_options" type="VBoxContainer" parent="menu/mons" unique_id=828111984]
 layout_mode = 2
-columns = 2
 
 [node name="option_back" type="Button" parent="menu" unique_id=1542746437]
 visible = false

@@ -77,9 +77,9 @@ your_pov = true
 [node name="controls_menu" parent="battle_renderer" unique_id=251551685 instance=ExtResource("5_choun")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
-offset_left = 248.0
+offset_left = 272.0
 offset_top = 176.0
-offset_right = 432.0
+offset_right = 422.0
 offset_bottom = 236.0
 
 [node name="message_panel" type="Panel" parent="battle_renderer" unique_id=566595197 node_paths=PackedStringArray("label", "choice_parent")]
@@ -97,9 +97,9 @@ anchors_preset = -1
 anchor_left = -0.054
 anchor_right = 1.973
 offset_left = 0.10000038
-offset_top = -24.0
-offset_right = -47.950012
-offset_bottom = 19.0
+offset_top = -10.0
+offset_right = -7.950012
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
@@ -107,7 +107,6 @@ metadata/_edit_group_ = true
 [node name="TypeoutLabel" type="Label" parent="battle_renderer/message_panel/layout" unique_id=1196388807]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "The quick brown fox jumped over the lazy dog"
 autowrap_mode = 2
 script = ExtResource("5_85g3d")
