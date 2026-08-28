@@ -1,7 +1,8 @@
 # Wynmon
+![](https://github.com/Zycostan/Wynmon/blob/main/icon.svg)
+
 Just a fangame project based around Wynncraft and turning it into a monster-catcher/tamer game
 Although it will be limited to just the Wynn province for now, I'll expand on it on a later date
-![](https://github.com/Zycostan/Wynmon/blob/main/icon.svg)
 
 ## Features
 
