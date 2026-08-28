@@ -152,15 +152,6 @@ func resolve_round():
 	
 	var quit_choice = ChoiceResource.new("> Flee", handle_request_quit)
 	var restart_choice = ChoiceResource.new("> Try Again", handle_request_restart)
-	var opponent_was_caught= game_state.opponent_monster.was_caught
-	
-	if opponent_was_caught:
-		var caught_monster = game_state.opponent_monster
-		current_phase = PHASE.GAME_OVER
-		Events.on_game_over.emit(true)
-		
-		TrainerController.transfer_caught_monster(game_state.player, game_state.opponent, caught_monster)
-		AVFXManager.queue_avfx_message("{monster_name} was caught!".format({"monster_name": caught_monster.name}), [quit_choice, restart_choice])
 	
 	if game_state.player_monster.hp == 0:
 		MonsterController.add_experience_to_monster(game_state.opponent_monster, Calculations.experience_value_of_monster(game_state.player_monster))
@@ -187,13 +178,9 @@ func resolve_round():
 			TrainerController.add_trainer_monster_to_battle(game_state.opponent, next_index)
 	
 	var update_player_mon = AVFXFunction.new(func(): Events.on_monster_updated.emit(game_state.player_monster))
+	var update_opponent_mon = AVFXFunction.new(func(): Events.on_monster_updated.emit(game_state.opponent_monster))
 	
-	var avfx_group: Array = [update_player_mon]
-	if not opponent_was_caught:
-		var update_opponent_mon = AVFXFunction.new(func(): Events.on_monster_updated.emit(game_state.opponent_monster))
-		avfx_group.append(update_opponent_mon)
-	
-	AVFXManager.queue_avfx_effect_group(avfx_group, null)
+	AVFXManager.queue_avfx_effect_group([update_player_mon, update_opponent_mon], null)
 	
 
 func does_player_go_first() -> bool:

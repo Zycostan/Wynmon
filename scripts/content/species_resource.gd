@@ -15,4 +15,3 @@ extends Resource
 @export var base_sp_defense: int
 
 @export var learned_moves: Array[IntMoveResource]
-@export_range(0.02, 1.0) var catch_rate: float = 0.2
