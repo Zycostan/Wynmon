@@ -79,8 +79,8 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
 offset_left = 248.0
 offset_top = 176.0
-offset_right = 422.0
-offset_bottom = 236.0
+offset_right = 432.0
+offset_bottom = 248.0
 
 [node name="message_panel" type="Panel" parent="battle_renderer" unique_id=566595197 node_paths=PackedStringArray("label", "choice_parent")]
 layout_mode = 0
