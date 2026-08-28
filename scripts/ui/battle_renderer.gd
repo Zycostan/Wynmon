@@ -73,16 +73,16 @@ func avfx_screenshake(avfx_instance: AVFXInstance, v3s: Array[Vector3]):
 	tween.tween_property(self, "position", Vector2.ZERO, 0.0)
 	tween.tween_callback(avfx_instance.finish)
 
-func avfx_projectile(instance: AVFXInstance, texture: Texture2D):
+func avfx_projectile(instance: AVFXInstance, texture: Texture2D, duration: float):
 	if instance.resource.delay == 0:
-		do_avfx_projectile(instance, texture)
+		do_avfx_projectile(instance, texture, duration)
 	else:
 		await get_tree().create_timer(instance.resource.delay).timeout
-		do_avfx_projectile(instance, texture)
+		do_avfx_projectile(instance, texture, duration)
 
-func do_avfx_projectile(instance: AVFXInstance, texture: Texture2D):
-	var frame_start = get_monster_frame(instance.target if instance.resource.target_self else instance.user)
-	var frame_end = get_monster_frame(instance.user if instance.resource.target_self else instance.target)
+func do_avfx_projectile(instance: AVFXInstance, texture: Texture2D, duration: float):
+	var frame_start = get_monster_frame(instance.user)
+	var frame_end = get_monster_frame(instance.target)
 	if frame_start == null or frame_end == null:
 		instance.finish()
 		return
@@ -94,7 +94,7 @@ func do_avfx_projectile(instance: AVFXInstance, texture: Texture2D):
 	sprite.global_position = frame_start.global_position
 	sprite.offset = instance.resource.offset
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite, "global_position", frame_end.frame.global_position, instance.resource.duration)
+	tween.tween_property(sprite, "global_position", frame_end.global_position, duration)
 	tween.tween_callback(func(): cleanup_avfx_node(instance, sprite))
 
 func avfx_animation(instance: AVFXInstance, animation_scene: PackedScene):

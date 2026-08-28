@@ -90,7 +90,7 @@ func faint_monster(monster: Monster):
 	var faint_message = AVFXMessages.fromStrings(["{monster_name} fainted!".format({"monster_name": monster.name})])
 	
 	await get_tree().create_timer(1.0).timeout
-	AVFXManager.queue_avfx_effect_group([faint_message], monster)
+	AVFXManager.queue_avfx_effect_group([flash, faint_message], monster)
 	
 
 func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
@@ -104,7 +104,7 @@ func create_monster(species: SpeciesResource, nickname: String = "") -> Monster:
 	monster.atk_growth = rng.randf_range(0.4, 1.2)
 	monster.def_growth = rng.randf_range(0.4, 1.2)
 	monster.sp_atk_growth = rng.randf_range(0.4, 1.2)
-	monster.sp_atk_growth = rng.randf_range(0.4, 1.2)
+	monster.sp_def_growth = rng.randf_range(0.4, 1.2)
 	monster.speed_growth = rng.randf_range(0.4, 1.2)
 	
 	# moves
@@ -146,8 +146,8 @@ func level_up_monster(monster: Monster):
 	while monster.moves.size() < monster.MAX_MOVES:
 		var move_to_add = monster.pending_moves_queue.pop_front()
 		var move = Move.new()
-		move.resource = move
-		move.usages = move.resource.max_usages
+		move.resource = move_to_add
+		move.usages = move_to_add.max_usages
 		monster.moves.append(move)
 		
 		AVFXManager.queue_avfx_message("{monster_name} has learned {move_name}".format({"monster_name": monster.name, "move_name": move.name}))
@@ -199,11 +199,14 @@ func instantiate_condition_on_monster(monster: Monster, condition_resource: Cond
 func on_turn_begun(monster: Monster):
 	if monster.hp == 0:
 		return
-	for condition in monster.conditions:
+	for condition in monster.conditions.duplicate():
 		var logs: Array[String] = []
 		AVFXManager.queue_avfx_effect_group(condition.resource.on_begin_turn_avfx, monster)
 		for effect in condition.resource.on_begin_turn_effects:
 			effect._do(monster, condition, game_state, false, logs)
+		if logs.size() > 0:
+			var message_avfx= AVFXMessages.fromStrings(logs)
+			AVFXManager.queue_avfx_effect_group([message_avfx], monster)
 		condition.duration_remaining -= 1
 		if condition.duration_remaining <= 0:
 			end_condition(monster, condition)

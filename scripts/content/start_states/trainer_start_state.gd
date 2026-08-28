@@ -13,9 +13,8 @@ func generate_trainer(is_player: bool) -> Trainer:
 	var trainer = TrainerController.create_trainer(generated_monsters, is_player)
 	trainer.name = name
 	
-	var generated_items: Array[Item] = []
 	for item in items:
-		TrainerController.add_item(trainer, item.resoure, item.quantity)
+		TrainerController.add_item(trainer, item.resource, item.quantity)
 	
 	return trainer
 	

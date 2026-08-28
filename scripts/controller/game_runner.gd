@@ -74,8 +74,7 @@ func handle_request_menu_fight():
 	else:
 		# fallback to default move if none
 		TrainerController.set_current_monster_move(game_state.player, -1)
-	
-	Events.on_menu_fight.emit(labels)
+		Events.on_menu_fight.emit(labels)
 
 func handle_request_menu_monsters():
 	if current_phase != PHASE.AWAIT_INPUT:
@@ -136,7 +135,7 @@ func choose_ai_move() -> void:
 		AVFXManager.queue_avfx_message("No Moves, Defaulted.")
 		TrainerController.set_current_monster_move(game_state.opponent, -1)
 	else:
-		var move_index = legal_move_indices.pick_random()
+		var move_index = legal_move_indices[rng.randi() % legal_move_indices.size()]
 		TrainerController.set_current_monster_move(game_state.opponent, move_index)
 	
 
@@ -158,7 +157,7 @@ func resolve_round():
 		var next_index = TrainerController.get_next_useable_monster_index(game_state.player)
 		if next_index == -1:
 			current_phase = PHASE.GAME_OVER
-			Events.on_game_over.emit(true)
+			Events.on_game_over.emit(false)
 			
 			AVFXManager.queue_avfx_message("All your monsters fainted, lost.", [quit_choice, restart_choice])
 			

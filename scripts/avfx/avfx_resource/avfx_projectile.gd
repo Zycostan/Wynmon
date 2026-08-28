@@ -6,4 +6,4 @@ extends AVFXResource
 @export var duration: float = 0.5
 
 func _do(instance: AVFXInstance):
-	Events.on_avfx_projectile.emit(instance, sprite)
+	Events.on_avfx_projectile.emit(instance, sprite, duration)

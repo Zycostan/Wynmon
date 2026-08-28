@@ -56,7 +56,7 @@ func emit_block_start():
 
 func remove_effect(avfx_instance: AVFXInstance):
 	avfx_instance.queue_free()
-	active_effect_count -=1
+	active_effect_count = max(0, active_effect_count - 1)
 	
 	if active_effect_count == 0:
 		if current_effect_group != null:

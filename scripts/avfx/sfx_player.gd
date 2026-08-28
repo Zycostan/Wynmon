@@ -15,4 +15,4 @@ func do_play_sfx(instance: AVFXInstance,clip: AudioStream):
 	pitch_scale = randf_range(0.9, 1.1)
 	stream = clip
 	play()
-	finished.connect(instance.finish)
+	finished.connect(instance.finish, CONNECT_ONE_SHOT)

@@ -8,4 +8,5 @@ func _do(instance: AVFXInstance):
 	return
 
 func generate(target: Monster, user: Monster):
-	return AVFXInstance.new(self, target, user)
+	var resolved_target = user if target_self else target
+	return AVFXInstance.new(self, resolved_target, user)
