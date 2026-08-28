@@ -107,6 +107,7 @@ metadata/_edit_group_ = true
 [node name="TypeoutLabel" type="Label" parent="battle_renderer/message_panel/layout" unique_id=1196388807]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "The quick brown fox jumped over the lazy dog"
 autowrap_mode = 2
 script = ExtResource("5_85g3d")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ball7vlteiawp" path="res://scripts/ui/monster_renderer_module.gd" id="1_3kg54"]
 [ext_resource type="Theme" uid="uid://bwqrj7njjbn07" path="res://ui/main.tres" id="2_4w4es"]
-[ext_resource type="Texture2D" uid="uid://q5ukv4r8xxs1" path="res://assets/art/monsters/turtle.png" id="3_3kg54"]
+[ext_resource type="Texture2D" uid="uid://cac406q18vddt" path="res://assets/art/wymon/sprites/horses/agile_horse.png" id="3_3kg54"]
 
 [node name="monster_renderer_module" type="HBoxContainer" unique_id=648968484 node_paths=PackedStringArray("frame", "data_panel", "name_label", "hp_label", "hp_bar", "status_label", "sprite")]
 custom_minimum_size = Vector2(0, 58)
@@ -27,6 +27,7 @@ metadata/_edit_group_ = true
 [node name="name" type="Label" parent="monster_data" unique_id=641293135]
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "MONSTERNAME"
 
 [node name="hpbar" type="ProgressBar" parent="monster_data" unique_id=387742672]
@@ -42,11 +43,13 @@ layout_mode = 2
 [node name="hp" type="Label" parent="monster_data/sub-hp" unique_id=1853607235]
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "23/23"
 
 [node name="status" type="Label" parent="monster_data/sub-hp" unique_id=1193942746]
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "BRN"
 
 [node name="frame" type="Control" parent="." unique_id=1165020661]
@@ -56,4 +59,5 @@ layout_mode = 2
 [node name="sprite" type="Sprite2D" parent="frame" unique_id=609396710]
 texture_filter = 1
 position = Vector2(32, 32)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_3kg54")
